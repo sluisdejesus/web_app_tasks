@@ -1,0 +1,38 @@
+{% extends "base.html"%}
+
+{% block content %}
+<form action="/tasks" method="POST">
+
+<div>
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description">
+</div>
+<div>
+    <label for="duration">Duration</label>
+    <input min = "0" type="number" id="duration" name="duration" placeholder="Duration of the task">
+</div>
+<div>
+    <label for="completed">Completed:</label>
+    <select name="completed" id="completed"> 
+        <option value=""disabled selected>Please select an option!</option>
+        <option value="false">False</option>
+        <option value="true">True</option>
+    </select>
+</div>
+<div>
+    <label for="user">User:</label>
+    <select name="user_id" id="user">
+        <option value=""disabled selected>Please select an option!</option>
+        {% for user in all_users %}
+        <option value="{{user.id}}"> {{user.first_name}} </option>
+        {% endfor %}
+</select>
+</div>
+
+<button type="submit">Add Task!</button>
+
+
+
+</form>
+
+{% endblock %}
